@@ -1,7 +1,7 @@
 #MY JOB
 input A1
 
-B1=IFERROR(INDEX(FILTER(SPLIT($A$1, " "), REGEXMATCH(SPLIT($A$1, " "), "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")),ROW()-1),"No email detected")
+B1=IFERROR(INDEX(FILTER(TRANSPOSE(SPLIT($A$1, " ")),REGEXMATCH(TRANSPOSE(SPLIT($A$1, " ")), "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")),ROW() - ROW($E$1) + 1),"No email detected")
 
 C1=IFERROR(LEFT(B1, FIND("@", B1) - 1), "")
 
